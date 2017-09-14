@@ -17,6 +17,8 @@ User-Agent: Simple-Client/0.5
 
 NOTE: The text `-- blank line --` is intended to show that a blank line must appear here. That is two CRLF pairs in a row, `\r\n\r\n`.
 
+You only need to implement the `GET` request. You will not need to implement others like `POST`, `PUT`, etc.. You may implement them if you want.
+
 ## Response
 In your HTTP response, you must adhere to the protocol or browsers will not work properly. Your response must contain the response line, response headers (Content-Length, Content-Type, Date, and Server), and the response data. Your response codes should be appropriate to the response itself, e.g. error and success codes as described in the [HTTP RFC 2616](http://www.ietf.org/rfc/rfc2616.txt). 
 
@@ -31,6 +33,8 @@ Content-Length: 1082
 ...page data...
 </html>
 ```
+
+You only need to return the status codes `200` for O.k., and `404` for file not found. You may implement more if you want to.
 
 You will also have to handle multiple requests at the same time. Threading libraries and threading features of your language are the easiest way to accomplish this. There are alternatives, like forking new processes and using signal handlers. While you can use these approaches, I would caution you to avoid them for now. Stick with threads.
 
@@ -59,6 +63,8 @@ Your web server should work with any standard web browser as a client. It should
 ## Notes
 You may need to send back MIME type headers for each file type. On a Linux or macOS computer, you can use the file `/etc/mime.types` to get this information. If you are on a Microsoft Windows computer there is one buried in your Windows system directory. Feel free to just copy one from a Linux machine instead if it's easier.
 
+A sample `www` directory is included for you to test with. It includes a few images (image/jpeg), a `site.css` (text/css) stylesheet, and an `index.html` (text/html) file. `index.html` should be served from the specified directory when no specific file in the directory is requested. E.g. when the `GET` request ends with a trailing slash character (`/`), serve up `index.html`, if it exists, from that directory.
+
 ## Protocol Specification
 The full [HTTP 1.1 Protocol Specification](http://www.ietf.org/rfc/rfc2616.txt) is available and is included here by reference only.
 
@@ -67,7 +73,7 @@ The full [HTTP 1.1 Protocol Specification](http://www.ietf.org/rfc/rfc2616.txt) 
 * The server must accept as a configurable parameter (on the command line) the directory (document root) where files will be served from.
 * The server must accept multiple clients and multiple requests (on their own sockets) at the same time.
 * You must include the file named PLAYBOOK.md
-* PLAYBOOK.md has <<Your name>>
+* PLAYBOOK.md has &lt;&lt;Your name&gt;&gt;
 * PLAYBOOK.md has what language you used
 * PLAYBOOK.md has a brief synopsis of your experience with the assignment (1-3 paragraphs).
 * PLAYBOOK.md has how to compile and execute your project.
